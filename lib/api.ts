@@ -67,7 +67,7 @@ export const transactionsAPI = {
   create: (data: any) => api.post('/transactions', data),
   update: (id: string, data: any) => api.put(`/transactions/${id}`, data),
   delete: (id: string) => api.delete(`/transactions/${id}`),
-  getStats: (params?: { startDate?: string; endDate?: string }) =>
+  getStats: (params?: { startDate?: string; endDate?: string; account?: string }) =>
     api.get('/transactions/stats', { params }),
 };
 

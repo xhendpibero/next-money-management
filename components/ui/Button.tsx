@@ -61,12 +61,12 @@ export const Button: React.FC<ButtonProps> = ({
     <motion.button
       whileHover={{ scale: disabled || isLoading ? 1 : 1.02 }}
       whileTap={{ scale: disabled || isLoading ? 1 : 0.98 }}
-      className={`${baseStyles} ${getVariantStyles()} ${sizes[size]} ${className}`}
+      className={`${baseStyles} ${getVariantStyles()} ${sizes[size]} inline-flex items-center justify-center ${className}`}
       disabled={disabled || isLoading}
       {...(props as any)}
     >
       {isLoading ? (
-        <span className="flex items-center justify-center">
+        <>
           <svg
             className="animate-spin -ml-1 mr-2 h-4 w-4"
             xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@ export const Button: React.FC<ButtonProps> = ({
             ></path>
           </svg>
           Loading...
-        </span>
+        </>
       ) : (
         children
       )}

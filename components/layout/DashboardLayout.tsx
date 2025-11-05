@@ -30,9 +30,9 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50 mr-auto">
       <Sidebar />
-      <main className="flex-1 ml-64 p-8">{children}</main>
+      <main className="flex-1 ml-[148px] p-8">{children}</main>
     </div>
   );
 };
