@@ -33,7 +33,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-primary-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#eff6ff] via-white to-[#eff6ff] px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,7 @@ export default function LoginPage() {
         <div className="bg-white rounded-lg shadow-xl p-8">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <Wallet className="w-12 h-12 text-primary-600" />
+              <Wallet className="w-12 h-12 text-[#2563eb]" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               Welcome Back
@@ -84,7 +84,7 @@ export default function LoginPage() {
               Don't have an account?{' '}
               <Link
                 href="/register"
-                className="text-primary-600 hover:text-primary-700 font-medium"
+                className="text-[#2563eb] hover:text-[#1d4ed8] font-medium"
               >
                 Sign up
               </Link>

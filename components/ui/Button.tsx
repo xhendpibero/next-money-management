@@ -20,15 +20,35 @@ export const Button: React.FC<ButtonProps> = ({
   const baseStyles =
     'font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
-  const variants = {
-    primary:
-      'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
-    secondary:
-      'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
-    danger:
-      'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
-    outline:
-      'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500',
+  // Check if className contains any text color class (including arbitrary values)
+  const hasCustomTextColor = className.includes('text-[') || /\btext-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose|black|white)-(50|100|200|300|400|500|600|700|800|900|950|DEFAULT)\b/.test(className);
+
+  // Remove text-white from variants if custom text color is provided
+  const getVariantStyles = () => {
+    let variantStyle = '';
+    switch (variant) {
+      case 'primary':
+        variantStyle = hasCustomTextColor
+          ? 'bg-[#2563eb] hover:bg-[#1d4ed8] focus:ring-[#3b82f6]'
+          : 'bg-[#2563eb] text-white hover:bg-[#1d4ed8] focus:ring-[#3b82f6]';
+        break;
+      case 'secondary':
+        variantStyle = hasCustomTextColor
+          ? 'bg-gray-600 hover:bg-gray-700 focus:ring-gray-500'
+          : 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500';
+        break;
+      case 'danger':
+        variantStyle = hasCustomTextColor
+          ? 'bg-red-600 hover:bg-red-700 focus:ring-red-500'
+          : 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500';
+        break;
+      case 'outline':
+        variantStyle = hasCustomTextColor
+          ? 'border-2 border-[#2563eb] hover:bg-[#eff6ff] focus:ring-[#3b82f6]'
+          : 'border-2 border-[#2563eb] text-[#2563eb] hover:bg-[#eff6ff] focus:ring-[#3b82f6]';
+        break;
+    }
+    return variantStyle;
   };
 
   const sizes = {
@@ -41,9 +61,9 @@ export const Button: React.FC<ButtonProps> = ({
     <motion.button
       whileHover={{ scale: disabled || isLoading ? 1 : 1.02 }}
       whileTap={{ scale: disabled || isLoading ? 1 : 0.98 }}
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`${baseStyles} ${getVariantStyles()} ${sizes[size]} ${className}`}
       disabled={disabled || isLoading}
-      {...props}
+      {...(props as any)}
     >
       {isLoading ? (
         <span className="flex items-center justify-center">
